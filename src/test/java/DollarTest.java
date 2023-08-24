@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DollarTest {
@@ -21,8 +20,8 @@ public class DollarTest {
 
     @Test
     void testEquality() {
-        assertThat(new Dollar(5).equals(Money.dollar(5))).isTrue();
-        assertThat(new Dollar(5).equals(Money.dollar(6))).isFalse();
+        assertThat(new Dollar(5, "USD").equals(Money.dollar(5))).isTrue();
+        assertThat(new Dollar(5, "USD").equals(Money.dollar(6))).isFalse();
         assertThat(Money.franc(5).equals(Money.franc(5))).isTrue();
         assertThat(Money.franc(5).equals(Money.franc(6))).isFalse();
         assertThat(Money.franc(5).equals(Money.dollar(5))).isFalse();
