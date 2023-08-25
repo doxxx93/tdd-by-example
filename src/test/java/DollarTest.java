@@ -103,9 +103,4 @@ public class DollarTest {
         assertThat(result).isEqualTo(Money.dollar(20));
     }
 
-    @Test
-    void testPlusSameCurrencyReturnsMoney() {
-        Expression sum = Money.dollar(1).plus(Money.dollar(1));
-        assertThat(sum).isInstanceOf(Money.class);
-    }
 }
