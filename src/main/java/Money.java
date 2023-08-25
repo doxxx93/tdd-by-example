@@ -25,6 +25,17 @@ class Money implements Expression {
         return currency;
     }
 
+    Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+
+    public Money reduce(String to) {
+        int rate = (currency.equals("CHF") && to.equals("USD"))
+                ? 2
+                : 1;
+        return new Money(amount / rate, to);
+    }
+
     @Override
     public boolean equals(Object object) {
         Money money = (Money) object;
@@ -37,13 +48,5 @@ class Money implements Expression {
                 "amount=" + amount +
                 ", currency='" + currency + '\'' +
                 '}';
-    }
-
-    Expression plus(Money addend) {
-        return new Sum(this, addend);
-    }
-
-    public Money reduce(String to) {
-        return this;
     }
 }
