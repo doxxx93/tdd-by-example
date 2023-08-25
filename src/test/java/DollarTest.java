@@ -65,4 +65,9 @@ public class DollarTest {
         Money result = bank.reduce(Money.franc(2), "USD");
         assertThat(result).isEqualTo(Money.dollar(1));
     }
+
+    @Test
+    void testIdentifyRate(){
+        assertThat(new Bank().rate("USD", "USD")).isEqualTo(1);
+    }
 }
