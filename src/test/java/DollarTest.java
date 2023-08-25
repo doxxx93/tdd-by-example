@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DollarTest {
@@ -26,7 +25,7 @@ public class DollarTest {
     }
 
     @Test
-    void testSimpleAddition(){
+    void testSimpleAddition() {
         Money sum = Money.dollar(5).plus(Money.dollar(5));
         assertThat(sum).isEqualTo(Money.dollar(10));
     }
