@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DollarTest {
@@ -52,14 +51,14 @@ public class DollarTest {
     }
 
     @Test
-    void testReduceMoney(){
+    void testReduceMoney() {
         Bank bank = new Bank();
         Money result = bank.reduce(Money.dollar(1), "USD");
         assertThat(result).isEqualTo(Money.dollar(1));
     }
 
     @Test
-    void testReduceMoneyDifferentCurrency(){
+    void testReduceMoneyDifferentCurrency() {
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
         Money result = bank.reduce(Money.franc(2), "USD");
@@ -67,7 +66,17 @@ public class DollarTest {
     }
 
     @Test
-    void testIdentifyRate(){
+    void testIdentifyRate() {
         assertThat(new Bank().rate("USD", "USD")).isEqualTo(1);
+    }
+
+    @Test
+    void testMixedAddition() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrances = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(fiveBucks.plus(tenFrances), "USD");
+        assertThat(result).isEqualTo(Money.dollar(10));
     }
 }
