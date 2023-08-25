@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DollarTest {
@@ -89,5 +90,16 @@ public class DollarTest {
         Expression sum = new Sum(fiveBucks, tenFrances).plus(fiveBucks);
         Money result = bank.reduce(sum, "USD");
         assertThat(result).isEqualTo(Money.dollar(15));
+    }
+
+    @Test
+    void testSumTimes() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrances = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Expression sum = new Sum(fiveBucks, tenFrances).times(2);
+        Money result = bank.reduce(sum, "USD");
+        assertThat(result).isEqualTo(Money.dollar(20));
     }
 }
