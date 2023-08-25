@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DollarTest {
 
@@ -31,5 +32,10 @@ public class DollarTest {
     void testCurrency(){
         assertThat(Money.dollar(1).currency()).isEqualTo("USD");
         assertThat(Money.franc(1).currency()).isEqualTo("CHF");
+    }
+
+    @Test
+    void testDifferentClassEquality(){
+        assertThat(new Franc(10,"CHF")).isEqualTo(new Money(10,"CHF"));
     }
 }

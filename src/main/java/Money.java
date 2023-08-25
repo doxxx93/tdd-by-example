@@ -1,4 +1,4 @@
-abstract class Money {
+class Money {
 
     protected int amount;
 
@@ -17,7 +17,9 @@ abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    abstract Money times(int multiplier);
+    Money times(int multiplier){
+        return null;
+    }
 
     String currency() {
         return currency;
@@ -27,5 +29,13 @@ abstract class Money {
     public boolean equals(Object object) {
         Money money = (Money) object;
         return amount == money.amount && getClass().equals(money.getClass());
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
     }
 }
